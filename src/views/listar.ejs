@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>Listar</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head> 
+<body >
+                
+      <div class="container">
+          <div class="row">
+              <div class="col-12 my-5 text-center">
+                    <h1>Listado de Profesional</h1>
+              </div>
+
+              <div class="col-12">
+
+                <div> 
+                    <a class="btn btn-success my-4" data-bs-toggle="modal" href="#exampleModalToggle" role="button"  >+Agregar</a>
+                    <div class="modal fade " id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+                        tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalToggleLabel">Agregar Profesional</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/add" method="post">
+                                        <div class="row mb-4">
+                                            <div class="col">
+                                                <input type="text" placeholder="Nombre" name="nombre" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" placeholder="Apellido" name="apellido" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <div class="col">
+                                                <input type="text" placeholder="Correo Electronico" name="correo" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" placeholder="Telefono" name="telefono" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-4">
+                                            <textarea placeholder="Resumen CV" name="resumen_cv" cols="10" rows="4"
+                                                class="form-control"></textarea>
+                                        </div>
+                                        <div class="form-group mb-4">
+                                            <input type="url" placeholder="URL imagen" name="url_imagen" class="form-control">
+                                        </div>
+                    
+                                        <button type="submit" class="btn btn-success">Enviar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               
+                </div>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">nombre</th>
+                            <th scope="col">apellido</th>
+                            <th scope="col">correo</th>
+                            <th scope="col">telefono</th>
+                            <th scope="col">acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        <% if (data) { %>
+                            <% for(let i=0; i < data.length; i++) { %>
+                                <tr>
+                                    <th scope="col">
+                                        <%= data[i].nombre %>
+                                    </th>
+                                    <th scope="col">
+                                        <%= data[i].apellido %>
+                                    </th>
+                                    <th scope="col">
+                                        <%= data[i].correo %>
+                                    </th>
+                                    <th scope="col">
+                                        <%= data[i].resumen_cv %>
+                                    </th>
+                                    <th scope="col">
+                                        <img style="width: 200px;" src="<%= data[i].url_imagen %>" alt="">
+                                    </th>
+                                    <th scope="col">
+                                        <a class="btn btn-primary" href="/ver/<%= data[i].id%>">Ver</a><br>
+                                        <a class="btn btn-warning" href="/update/<%= data[i].id%>">Editar</a><br>   
+                                        <a class="btn btn-danger" href="/delete/<%= data[i].id%>">Eliminar</a>
+                                    </th>
+                                </tr>
+
+                                <% } %>
+                                    <% } %> 
+                    </tbody>
+                </table>
+              </div>
+
+
+          </div>
+      </div>                      
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+</body> 
+</html>
